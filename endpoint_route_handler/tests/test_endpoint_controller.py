@@ -19,6 +19,7 @@ class EndpointHttpCase(HttpCase):
 
     def tearDown(self):
         EndpointRegistry.wipe_registry_for(self.env.cr)
+        self.env.registry.clear_cache("routing")
         super().tearDown()
 
     def _make_new_route(self, options=None, **kw):
