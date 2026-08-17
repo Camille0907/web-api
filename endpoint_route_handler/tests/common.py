@@ -55,8 +55,7 @@ class CommonEndpoint(TransactionCase):
                 mocked_request.registry._init_modules = set()
                 yield mocked_request
         finally:
-            # Restore the real _init_modules and clear the routing cache.
+            # Restore the real _init_modules.
             # Without this, routing_map() keeps being built with an empty module
             # set and post_install HttpCase tests in other modules get 404s.
             registry._init_modules = original_init_modules
-            registry.clear_cache("routing")
